@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,9 +10,5 @@ func _process(delta):
 	pass
 
 
-func _on_build_menu_build_building(type: Buildings.BuildingType):
-	print("Building: ", Buildings.BuildingType.keys()[type])
-	match type:		
-		_:
-			pass
+
 

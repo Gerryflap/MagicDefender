@@ -6,11 +6,11 @@ extends Camera2D
 # Zoom base. Zoom level is vased on zoom_base ** zoom_exponent
 @export var zoom_base = 1.2
 
-var zoom_exponent = 0
+var zoom_exponent = -6
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	position = Vector2(2000, 900)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

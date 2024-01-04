@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwfc6ifrmdbq8"]
+[gd_scene load_steps=4 format=3 uid="uid://cwfc6ifrmdbq8"]
 
 [ext_resource type="PackedScene" uid="uid://chw1fk6b4n8s2" path="res://scenes/user_camera.tscn" id="1_oyiin"]
-[ext_resource type="PackedScene" uid="uid://dx2ysltspu3qv" path="res://scenes/world_surface.tscn" id="2_i7b2f"]
+[ext_resource type="PackedScene" uid="uid://cyjd53v6x6amm" path="res://scenes/world.tscn" id="3_fxuid"]
 [ext_resource type="PackedScene" uid="uid://cu3tdrgsr3knc" path="res://scenes/build_menu.tscn" id="3_jiobl"]
-[ext_resource type="Script" path="res://scenes/World.gd" id="4_17hse"]
 
 [node name="Main" type="Node"]
 
@@ -13,11 +12,7 @@ position_smoothing_speed = 100.0
 drag_horizontal_enabled = false
 drag_vertical_enabled = false
 
-[node name="WorldSurface" parent="." instance=ExtResource("2_i7b2f")]
-
 [node name="BuildMenu" parent="." instance=ExtResource("3_jiobl")]
 
-[node name="World" type="Node" parent="."]
-script = ExtResource("4_17hse")
-
-[connection signal="build_building" from="BuildMenu" to="World" method="_on_build_menu_build_building"]
+[node name="World" parent="." instance=ExtResource("3_fxuid")]
+texture_filter = 5
