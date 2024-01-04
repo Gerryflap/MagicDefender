@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://el8q1n0hiw4e"]
 
-[ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_14pbo"]
+[ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_qxodp"]
 [ext_resource type="Texture2D" uid="uid://cg4xng5adg7q1" path="res://assets/img/enemy_1.png" id="2_d5pdt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aml7c"]
@@ -46,7 +46,7 @@ radius = 12.0416
 mass = 200.0
 gravity_scale = 0.0
 lock_rotation = true
-script = ExtResource("1_14pbo")
+script = ExtResource("1_qxodp")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -4,9 +4,9 @@ extends Camera2D
 @export var camera_speed = 400
 
 # Zoom base. Zoom level is vased on zoom_base ** zoom_exponent
-@export var zoom_base = 1.2
+@export var zoom_base = 2.0
 
-var zoom_exponent = -6
+var zoom_exponent = -2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
