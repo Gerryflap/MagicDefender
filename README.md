@@ -9,3 +9,5 @@ The game is inspired by the prompt "Magic gone wrong" and builds on the followin
 - There's a tradeoff here, with buildings that generate more magic for the same cost, but also disproportionally corrupt the world way more
 - Corruption will cause a larger number of enemies to spawn, as well as spawning stronger enemies earlier
 
+## Screenshot of current game:
+![Image should be here, but isn't :(](example.png)
