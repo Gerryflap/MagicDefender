@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://cu3tdrgsr3knc"]
+[gd_scene load_steps=6 format=3 uid="uid://cu3tdrgsr3knc"]
 
 [ext_resource type="Theme" uid="uid://dpqld124rov76" path="res://scenes/build_menu.tres" id="1_s6t1o"]
 [ext_resource type="Texture2D" uid="uid://bpduombuj7jhb" path="res://assets/img/resource_1_1.png" id="1_xsefy"]
+[ext_resource type="Script" path="res://scenes/build_menu.gd" id="1_y1sa4"]
+[ext_resource type="Script" path="res://scenes/PlayerData.gd" id="2_t6frc"]
+[ext_resource type="Script" path="res://scenes/MagicTextLabel.gd" id="4_fema6"]
 
 [node name="BuildMenu" type="CanvasLayer"]
+script = ExtResource("1_y1sa4")
+
+[node name="PlayerData" type="Node" parent="."]
+script = ExtResource("2_t6frc")
 
 [node name="BuildUI" type="CanvasLayer" parent="."]
 
@@ -36,6 +43,11 @@ layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("1_s6t1o")
 
+[node name="MagicTextLabel" type="Label" parent="BuildUI/Container/Panel/MarginContainer/Container"]
+layout_mode = 2
+text = "Magic: 0"
+script = ExtResource("4_fema6")
+
 [node name="Magic Collection" type="Label" parent="BuildUI/Container/Panel/MarginContainer/Container"]
 layout_mode = 2
 text = "Magic Collection
@@ -48,7 +60,7 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("1_s6t1o")
 
-[node name="Button" type="Button" parent="BuildUI/Container/Panel/MarginContainer/Container/MagicBuildings/MarginContainer"]
+[node name="StableCollectorBuilding" type="Button" parent="BuildUI/Container/Panel/MarginContainer/Container/MagicBuildings/MarginContainer"]
 layout_mode = 2
 tooltip_text = "Stable Magic Condenser
 +100 magic / turn
@@ -83,3 +95,5 @@ text = "M 10,000"
 icon = ExtResource("1_xsefy")
 icon_alignment = 1
 vertical_icon_alignment = 0
+
+[connection signal="magic_amnt_updated" from="PlayerData" to="BuildUI/Container/Panel/MarginContainer/Container/MagicTextLabel" method="_on_player_data_magic_amnt_updated"]
