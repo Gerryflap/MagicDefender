@@ -1,5 +1,7 @@
 extends Node2D
 
+const hit = preload("res://elemental_hit.tscn")
+
 var destination = null
 var start = null
 var progress: float = 0
@@ -27,8 +29,10 @@ func _process(delta):
 	position = progress * destination + (1.0 - progress) * start
 		
 	if progress >= 1.0:
-		# TODO: Spawn effect
 		print("Destination reached! ", progress)
+		var hit_inst = hit.instantiate()
+		hit_inst.position = position
+		get_node("../").add_child(hit_inst)
 		queue_free()
 	
 func init(pos: Vector2, dest: Vector2, elem: String):

@@ -94,7 +94,7 @@ layout_mode = 2
 tooltip_text = "Magic Flame Tower
 100 fire damage
 burn: 10 fire damage/s for 5 seconds
-Area of effect: 10 px"
+Area of effect radius: 50 px"
 focus_mode = 1
 theme = ExtResource("1_s6t1o")
 text = "M 1,000"

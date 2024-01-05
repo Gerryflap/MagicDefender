@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	for i in range(500):
 		var enemy = enemy_scene.instantiate()
-		enemy.position = Vector2(randf_range(1000, 2000), randf_range(600, 1300))
+		enemy.position = Vector2(randf_range(0, 1500), randf_range(600, 1300))
 		add_child(enemy)
 
 

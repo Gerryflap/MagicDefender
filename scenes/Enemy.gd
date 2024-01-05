@@ -9,6 +9,7 @@ var direction: float = 0.0
 var previous_pos = Vector2(0,0)
 var previous_delta: float = 0
 var impatience = 0.0
+var health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

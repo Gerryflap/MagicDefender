@@ -15,12 +15,10 @@ func _process(delta):
 
 
 func _on_attack_range_entered(body):
-	print("Entered: ", body)
+
 	if body.is_in_group("enemies"):
-		print("Enemy sighted!")
 		target = body
 		if can_fire:
-			print("Firing!")
 			can_fire = false
 			fire_projectile()
 
@@ -29,7 +27,6 @@ func _on_area_2d_body_exited(body):
 		target = null
 
 func _on_shoot_timer_timeout():
-	print("Timer timeout!")
 	if target != null:
 		fire_projectile()
 	else:
