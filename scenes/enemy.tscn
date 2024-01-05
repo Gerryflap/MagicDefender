@@ -1,38 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://el8q1n0hiw4e"]
+[gd_scene load_steps=8 format=3 uid="uid://el8q1n0hiw4e"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_qxodp"]
-[ext_resource type="Texture2D" uid="uid://cg4xng5adg7q1" path="res://assets/img/enemy_1.png" id="2_d5pdt"]
+[ext_resource type="Texture2D" uid="uid://y1rxech5sx4a" path="res://assets/img/enemy_2.png" id="2_qyeae"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_aml7c"]
-atlas = ExtResource("2_d5pdt")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_woch7"]
+atlas = ExtResource("2_qyeae")
+region = Rect2(0, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6iub2"]
-atlas = ExtResource("2_d5pdt")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjbk5"]
+atlas = ExtResource("2_qyeae")
+region = Rect2(16, 0, 16, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nav36"]
-atlas = ExtResource("2_d5pdt")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x1twg"]
-atlas = ExtResource("2_d5pdt")
-region = Rect2(96, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcprq"]
+atlas = ExtResource("2_qyeae")
+region = Rect2(32, 0, 16, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nvap0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aml7c")
+"texture": SubResource("AtlasTexture_woch7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6iub2")
+"texture": SubResource("AtlasTexture_yjbk5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nav36")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_x1twg")
+"texture": SubResource("AtlasTexture_lcprq")
 }],
 "loop": true,
 "name": &"default",
@@ -40,9 +33,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4b3pt"]
-radius = 12.0416
+radius = 7.0
 
 [node name="Enemy" type="RigidBody2D"]
+y_sort_enabled = true
 mass = 200.0
 gravity_scale = 0.0
 lock_rotation = true
@@ -50,8 +44,11 @@ script = ExtResource("1_qxodp")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-8, -27)
 sprite_frames = SubResource("SpriteFrames_nvap0")
 frame_progress = 0.40796
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_4b3pt")

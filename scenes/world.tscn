@@ -14,7 +14,6 @@ texture = ExtResource("3_r18pn")
 texture_region_size = Vector2i(32, 32)
 use_texture_padding = false
 1:0/0 = 0
-1:0/0/terrain = 1
 1:0/0/probability = 0.1
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
@@ -37,9 +36,11 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_ckhfe")
 sources/2 = SubResource("TileSetAtlasSource_vv7sq")
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_o4ob8")
 
 [node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("2_tto2q")
 enemy_scene = ExtResource("3_vfjec")
 
