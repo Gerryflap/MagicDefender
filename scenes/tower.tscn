@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdwcvcjtdikrv"]
+
+[ext_resource type="Script" path="res://scenes/tower.gd" id="1_f4gxo"]
+[ext_resource type="Texture2D" uid="uid://cixr73b5qug2l" path="res://assets/img/flame_tower.png" id="2_s3hmx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3hot"]
+atlas = ExtResource("2_s3hmx")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58hie"]
+atlas = ExtResource("2_s3hmx")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhyre"]
+atlas = ExtResource("2_s3hmx")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sx55d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3hot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58hie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhyre")
+}],
+"loop": true,
+"name": &"flame",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_febhn"]
+height = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6xce"]
+radius = 187.131
+
+[node name="Tower" type="StaticBody2D" groups=["buildings"]]
+y_sort_enabled = true
+collision_layer = 2
+script = ExtResource("1_f4gxo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_sx55d")
+animation = &"flame"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_febhn")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="AttackRange" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_y6xce")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.061
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_attack_range_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyjd53v6x6amm"]
+[gd_scene load_steps=11 format=3 uid="uid://cyjd53v6x6amm"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_o4ob8"]
 [ext_resource type="Script" path="res://scenes/Buildings.gd" id="2_n8cab"]
 [ext_resource type="Script" path="res://scenes/Enemies.gd" id="2_tto2q"]
 [ext_resource type="Texture2D" uid="uid://cnax306cw67ep" path="res://assets/img/background_tiles.png" id="3_r18pn"]
 [ext_resource type="PackedScene" uid="uid://el8q1n0hiw4e" path="res://scenes/enemy.tscn" id="3_vfjec"]
+[ext_resource type="PackedScene" uid="uid://cdwcvcjtdikrv" path="res://scenes/tower.tscn" id="5_caphx"]
 [ext_resource type="Texture2D" uid="uid://1xfm8thtecb0" path="res://assets/img/sand_1.png" id="6_58u8t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ckhfe"]
@@ -31,7 +32,7 @@ use_texture_padding = false
 
 [sub_resource type="TileSet" id="TileSet_ihloi"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_ckhfe")
 sources/2 = SubResource("TileSetAtlasSource_vv7sq")
@@ -45,8 +46,21 @@ y_sort_enabled = true
 script = ExtResource("2_tto2q")
 enemy_scene = ExtResource("3_vfjec")
 
+[node name="Enemy" parent="Enemies" instance=ExtResource("3_vfjec")]
+position = Vector2(1590.25, 905.194)
+
 [node name="Buildings" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("2_n8cab")
+
+[node name="Tower" parent="Buildings" instance=ExtResource("5_caphx")]
+position = Vector2(1893.05, 914.898)
+
+[node name="Tower2" parent="Buildings" instance=ExtResource("5_caphx")]
+position = Vector2(1878.09, 659.719)
+
+[node name="Tower3" parent="Buildings" instance=ExtResource("5_caphx")]
+position = Vector2(1892.34, 1119.42)
 
 [node name="Background" type="TileMap" parent="."]
 texture_filter = 1
