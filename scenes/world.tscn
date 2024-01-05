@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://1xfm8thtecb0" path="res://assets/img/sand_1.png" id="6_58u8t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ckhfe"]
+friction = 0.07
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vv7sq"]
 texture = ExtResource("3_r18pn")
