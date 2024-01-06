@@ -14,13 +14,11 @@ var direction: float = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play()
-	print("Projectile created!")
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if destination == null:
-		print("ERROR: destination is null!")
 		queue_free()
 	
 	duration += delta
@@ -29,7 +27,6 @@ func _process(delta):
 	position = progress * destination + (1.0 - progress) * start
 		
 	if progress >= 1.0:
-		print("Destination reached! ", progress)
 		var hit_inst = hit.instantiate()
 		hit_inst.position = position
 		get_node("../").add_child(hit_inst)

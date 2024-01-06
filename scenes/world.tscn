@@ -53,6 +53,9 @@ position = Vector2(1590.25, 905.194)
 y_sort_enabled = true
 script = ExtResource("2_n8cab")
 
+[node name="Base" parent="Buildings" instance=ExtResource("5_caphx")]
+position = Vector2(2000, 900)
+
 [node name="Tower" parent="Buildings" instance=ExtResource("5_caphx")]
 position = Vector2(1893.05, 914.898)
 

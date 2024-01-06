@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var base = $Buildings/Base
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -10,5 +12,6 @@ func _process(delta):
 	pass
 
 
-
+func get_base():
+	return base
 

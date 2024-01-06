@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://el8q1n0hiw4e"]
+[gd_scene load_steps=9 format=3 uid="uid://el8q1n0hiw4e"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_qxodp"]
 [ext_resource type="Texture2D" uid="uid://y1rxech5sx4a" path="res://assets/img/enemy_2.png" id="2_qyeae"]
@@ -35,6 +35,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6ni0"]
 size = Vector2(10, 5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i546e"]
+size = Vector2(15, 23)
+
 [node name="Enemy" type="RigidBody2D" groups=["enemies"]]
 y_sort_enabled = true
 collision_mask = 7
@@ -54,3 +57,16 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_k6ni0")
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+priority = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -2.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_i546e")
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

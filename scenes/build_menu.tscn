@@ -90,6 +90,7 @@ layout_mode = 2
 theme = ExtResource("1_s6t1o")
 
 [node name="FlameTowerButton" type="Button" parent="BuildUI/Container/Panel/MarginContainer/Container/Turrets/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 tooltip_text = "Magic Flame Tower
 100 fire damage
@@ -99,5 +100,10 @@ focus_mode = 1
 theme = ExtResource("1_s6t1o")
 text = "M 1,000"
 icon = SubResource("AtlasTexture_wdsco")
+text_overrun_behavior = 3
+clip_text = true
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
 [connection signal="magic_amnt_updated" from="PlayerData" to="BuildUI/Container/Panel/MarginContainer/Container/MagicTextLabel" method="_on_player_data_magic_amnt_updated"]

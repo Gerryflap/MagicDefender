@@ -15,7 +15,6 @@ func _process(delta):
 
 
 func _on_attack_range_entered(body):
-
 	if body.is_in_group("enemies"):
 		target = body
 		if can_fire:
