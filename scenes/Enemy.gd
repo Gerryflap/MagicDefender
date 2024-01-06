@@ -10,6 +10,7 @@ var previous_pos = Vector2(0,0)
 var previous_delta: float = 0
 var impatience = 0.0
 var health = 100
+var attack_target = null
 
 var state: EnemyState = EnemyState.WALKING
 
@@ -27,8 +28,8 @@ func _ready():
 func _process(delta):
 	if state == EnemyState.WALKING:
 		_process_walking(delta)
-	else:
-		pass
+	elif state == EnemyState.ATTACKING:
+		_process_attacking(delta)
 	
 func _process_walking(delta):
 	linear_velocity = Vector2(cos(direction), sin(direction)) * desired_speed
@@ -50,14 +51,25 @@ func _process_walking(delta):
 		
 	previous_delta = delta
 	previous_pos = position
+
+func _process_attacking(delta):
+	var attack_healthbar = attack_target.get_node("Healthbar")
+	if attack_healthbar != null:
+		attack_healthbar.add_health(-10 * delta)
+	else:
+		print("WARNING: Cannot attack body, no HealthBar: ", attack_target)
 	
 func change_direction():
-	var base_position: Vector2 = get_node("../../Buildings/Base").position
-	var angle_to_base = position.angle_to_point(base_position)
-	if position.distance_to(base_position) < 300:
-		direction = angle_to_base
+	var base = get_node("../../Buildings/Base")
+	if base == null:
+		direction = randf_range(0, TAU)
 	else:
-		direction = randf_range(angle_to_base-0.3, angle_to_base+0.3)
+		var base_position: Vector2 = base.position
+		var angle_to_base = position.angle_to_point(base_position)
+		if position.distance_to(base_position) < 300:
+			direction = angle_to_base
+		else:
+			direction = randf_range(angle_to_base-0.3, angle_to_base+0.3)
 	$AnimatedSprite2D.flip_h = cos(direction) < 0
 
 func reset_change_dir():
@@ -69,20 +81,12 @@ func turn_around():
 		$AnimatedSprite2D.flip_h = cos(direction) < 0
 	change_dir_counter = randf_range(change_dir_min_s, change_dir_max_s)
 
-
-func _on_body_entered(body):
-	if body.is_in_group("buildings"):
-		update_state(EnemyState.ATTACKING)
-		
-func _on_body_exited(body):
-	if body.is_in_group("buildings"):
-		update_state(EnemyState.WALKING)
-
 func update_state(new_state):
+	state = new_state
 	if new_state == EnemyState.WALKING:
 		$AnimatedSprite2D.play()
 	elif new_state == EnemyState.ATTACKING:
-		print("Attacking!")
+
 		$AnimatedSprite2D.pause()
 
 enum EnemyState {
@@ -91,11 +95,14 @@ enum EnemyState {
 }
 
 func _on_attack_range_body_entered(body):
-	print(body)
 	if body.is_in_group("buildings"):
+		attack_target = body
 		update_state(EnemyState.ATTACKING)
 
 func _on_attack_range_body_exited(body):
-	print(body)
 	if body.is_in_group("buildings"):
 		update_state(EnemyState.WALKING)
+		attack_target = null
+
+func _on_healthbar_health_depleted():
+	queue_free()

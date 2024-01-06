@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://n3cklmaeyghu"]
 
-[ext_resource type="Script" path="res://elemental_hit.gd" id="1_15kf7"]
-[ext_resource type="Texture2D" uid="uid://m5lu8j4ivvdk" path="res://assets/img/fire_explosion.png" id="2_f07wr"]
+[ext_resource type="Script" path="res://scenes/elemental_hit.gd" id="1_hcaqc"]
+[ext_resource type="Texture2D" uid="uid://m5lu8j4ivvdk" path="res://assets/img/fire_explosion.png" id="2_nskxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kijwg"]
 radius = 50.0
@@ -11,7 +11,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.683735, 0.930523), -0.961105, 
 point_count = 3
 
 [node name="ElementalHit" type="Node2D"]
-script = ExtResource("1_15kf7")
+script = ExtResource("1_hcaqc")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -29,7 +29,7 @@ y_sort_enabled = true
 amount = 100
 lifetime = 0.4
 explosiveness = 1.0
-texture = ExtResource("2_f07wr")
+texture = ExtResource("2_nskxc")
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 37.09

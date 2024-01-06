@@ -1,6 +1,6 @@
 extends Node2D
 
-const hit = preload("res://elemental_hit.tscn")
+const hit = preload("res://scenes/elemental_hit.tscn")
 
 var destination = null
 var start = null

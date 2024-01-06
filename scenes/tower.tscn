@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdwcvcjtdikrv"]
+[gd_scene load_steps=10 format=3 uid="uid://cdwcvcjtdikrv"]
 
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_f4gxo"]
 [ext_resource type="Texture2D" uid="uid://cixr73b5qug2l" path="res://assets/img/flame_tower.png" id="2_s3hmx"]
+[ext_resource type="PackedScene" uid="uid://cik85gnygwekp" path="res://scenes/healthbar.tscn" id="3_rscog"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3hot"]
 atlas = ExtResource("2_s3hmx")
@@ -63,6 +64,11 @@ shape = SubResource("CircleShape2D_y6xce")
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 2.061
 
+[node name="Healthbar" parent="." instance=ExtResource("3_rscog")]
+position = Vector2(0, -48)
+max_health = 2000.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_attack_range_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="health_depleted" from="Healthbar" to="." method="_on_healthbar_health_depleted"]

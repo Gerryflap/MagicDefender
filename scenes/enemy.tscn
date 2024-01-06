@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://el8q1n0hiw4e"]
+[gd_scene load_steps=11 format=3 uid="uid://el8q1n0hiw4e"]
 
 [ext_resource type="Script" path="res://scenes/Enemy.gd" id="1_qxodp"]
 [ext_resource type="Texture2D" uid="uid://y1rxech5sx4a" path="res://assets/img/enemy_2.png" id="2_qyeae"]
+[ext_resource type="PackedScene" uid="uid://cik85gnygwekp" path="res://scenes/healthbar.tscn" id="3_wooap"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4h4gk"]
+friction = 0.02
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_woch7"]
 atlas = ExtResource("2_qyeae")
@@ -41,6 +45,7 @@ size = Vector2(15, 23)
 [node name="Enemy" type="RigidBody2D" groups=["enemies"]]
 y_sort_enabled = true
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_4h4gk")
 gravity_scale = 0.0
 lock_rotation = true
 freeze_mode = 1
@@ -68,5 +73,9 @@ position = Vector2(0, -2.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_i546e")
 
+[node name="Healthbar" parent="." instance=ExtResource("3_wooap")]
+position = Vector2(0, -28)
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
+[connection signal="health_depleted" from="Healthbar" to="." method="_on_healthbar_health_depleted"]

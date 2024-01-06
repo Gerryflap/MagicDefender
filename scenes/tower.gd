@@ -38,5 +38,5 @@ func fire_projectile():
 	proj.init(startpos, target.position, "fire")
 	get_node("../").add_child(proj)
 
-	
-
+func _on_healthbar_health_depleted():
+	queue_free()
