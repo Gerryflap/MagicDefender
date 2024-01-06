@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://n3cklmaeyghu"]
+[gd_scene load_steps=5 format=3 uid="uid://n3cklmaeyghu"]
 
 [ext_resource type="Script" path="res://elemental_hit.gd" id="1_15kf7"]
+[ext_resource type="Texture2D" uid="uid://m5lu8j4ivvdk" path="res://assets/img/fire_explosion.png" id="2_f07wr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kijwg"]
 radius = 50.0
+
+[sub_resource type="Curve" id="Curve_d3ey4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.683735, 0.930523), -0.961105, -0.961105, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="ElementalHit" type="Node2D"]
 script = ExtResource("1_15kf7")
@@ -18,5 +23,25 @@ shape = SubResource("CircleShape2D_kijwg")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+amount = 100
+lifetime = 0.4
+explosiveness = 1.0
+texture = ExtResource("2_f07wr")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 37.09
+initial_velocity_max = 116.63
+linear_accel_min = 27.36
+linear_accel_max = 55.79
+linear_accel_curve = SubResource("Curve_d3ey4")
+radial_accel_min = -21.59
+radial_accel_max = 2.28
+damping_min = 4.546
+damping_max = 9.575
+scale_amount_min = 0.5
+scale_amount_max = 1.5
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
